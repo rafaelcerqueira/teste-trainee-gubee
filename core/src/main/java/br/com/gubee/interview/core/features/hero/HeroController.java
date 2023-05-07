@@ -4,10 +4,7 @@ import br.com.gubee.interview.model.request.CreateHeroRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.UUID;
@@ -22,6 +19,11 @@ import static org.springframework.http.ResponseEntity.created;
 public class HeroController {
 
     private final HeroService heroService;
+
+    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> index() {
+        return ResponseEntity.ok("Welcome to the Gubee Heroes API");
+    }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> create(@Validated
